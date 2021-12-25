@@ -1,0 +1,15 @@
+# conda env create --file environment.yml
+name: production_analysis
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - jupyter
+  - jupyterlab
+  - pip
+  - pyprojroot
+  - python=3.10
+  - pip:
+    - pyhere
+    
