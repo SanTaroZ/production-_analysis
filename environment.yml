@@ -1,0 +1,14 @@
+name: production_analysis
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - cookiecutter=1.7.3
+  - jupyterlab
+  - pandas
+  - matplotlib
+  - seaborn
+  - pep8
+  - openpyxl
+  - os
+prefix: C:\Users\SanTaroZ\anaconda3\envs\production_analysis
