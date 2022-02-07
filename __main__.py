@@ -41,6 +41,7 @@ def loading_data():
     data.loc[:,'TOTAL KG'] = df
     data.loc[:,'TOTAL KG'] = data['TOTAL KG'].astype('float')
     print('Column SCRAP')
+    data['SCRAP'] = pd.to_numeric(data['SCRAP'], errors='coerce') #helps with cells in blank with string type
     data.loc[:,'SCRAP'] = data['SCRAP'].fillna(0)
     data['SCRAP'] = data['SCRAP'].astype('float')
     print("Saving data in csv file...")
