@@ -237,36 +237,24 @@ def scrap_per_machine():
     data = data.loc[data['SCRAP']>0]
     data.sort_values(by = 'PORCENTAJE', ascending = True, inplace = True)
     machines = data.index.values
-    n = 1
-    mac = len(machines)
-    while mac>15:
-        mac = mac -15
-        n=n+1
-
+    machine_number = len(data.index.values)
     color = ['indianred', 'darkolivegreen','steelblue', 'saddlebrown']
-    fig = plt.subplots(figsize = [20,40],constrained_layout=True)
+    init_list = [0,15,30,45]
+    for i in range(1,5): # 1 to 4
+        target = 15 * i 
+        if init_list[i-1] < machine_number:
+            fig, axs = plt.subplots(figsize = [15,10] )
+            x = machines[init_list[i-1]:target]
+            y = data["PORCENTAJE"].iloc[init_list[i-1]:target]
+            bars = axs.bar(x, y, color = color[i-1], alpha = 1 ,linewidth = 0.2)
+            axs.set_xlabel('Máquinas')
+            axs.set_ylabel('% de Scrap')
+            axs.set_title('Porcentaje de scrap por máquina')
+            axs.bar_label(bars, label_type = "edge", fmt='%0.1f')
+            plt.savefig('scrap per machine_'+str(init_list[i-1]))
+        else:
+            continue
 
-    initial_value = 0 
-    last_value = 15
-    for i in range(n):
-        plt.subplot(4,1,i+1)
-        x = machines[initial_value:last_value]
-        y = data["PORCENTAJE"].iloc[initial_value:last_value]
-        bars = plt.bar(x, y, color = color[i], alpha = 1, linewidth = 0.2)
-        plt.xlabel('Máquinas')
-        plt.ylabel('Scrap')
-        plt.title('Porcentaje de scrap por máquina')
-        plt.bar_label(bars, label_type = "edge", fmt='%0.1f')
-        plt.minorticks_on()
-    
-        
-    
-        initial_value = initial_value + 15
-        last_value = last_value +15
-
-            
-    #plt.show()
-    plt.savefig('scrap per machine')
     
 
 def run():
