@@ -255,7 +255,35 @@ def scrap_per_machine():
         else:
             continue
 
+def prod_per_day_per_machine():
+    print("\n")
+    print("Production per day per machine")
+    df = pd.read_csv("data.csv")
+    df_prod = df.groupby(['MÁQ.']).sum()
+    prod_month=[]
+
+    for i in range(0,len(df_prod.index)):
+        x =df_prod.loc[df_prod.index[i]]['TOTAL KG']
+        prod_month.append(x)
     
+    df_days = df.groupby(by=['DIA','MÁQ.']).sum()
+    day_list = []
+    for i in range(0,len(df_prod.index)):
+        d = 0
+        for u in range(1,32):
+            try:
+                x =df_days.loc[(u, df_prod.index[i])]['TOTAL KG']            
+                if x > 0:
+                    d = d+1   
+            except:
+                continue
+        day_list.append(d)
+
+    data = { 'PRODUCCION': prod_month, 'DIAS': day_list}
+    df = pd.DataFrame(data =data, index = df_prod.index)
+    df['PRODUCCION X DIA'] = df['PRODUCCION'] / df['DIAS']
+    df['PRODUCCION X DIA'] = df['PRODUCCION X DIA'].round(decimals = 0)
+    df.to_excel("prod_per_day.xlsx")
 
 def run():
     loading_data()
@@ -264,6 +292,7 @@ def run():
     scrap_vs_total_scrap()
     cross_information()
     scrap_per_machine()
+    prod_per_day_per_machine()
     
       
 
