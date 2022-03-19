@@ -3,7 +3,7 @@
 By: Edwin Carlos Cárdenas Sotomayor
 
 
-Version: 0.1
+Version: 2
 
 ## Automatization of reports to analyze and take decisions based on production reports of industrial equipment.
 
