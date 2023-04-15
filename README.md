@@ -2,12 +2,10 @@
 
 By: Edwin Carlos Cárdenas Sotomayor
 
+Email: cedwin72@gmail.com
 
-<<<<<<< HEAD
 Version: 2.0
-=======
-Version: 2
->>>>>>> 3373b86a3ee74a35d5547ef2e5e2e69e29dafd5b
+
 
 ## Automatization process for analyze and take decisions based on production reports of industrial equipment.
 
